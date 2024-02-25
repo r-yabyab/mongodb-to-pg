@@ -2,10 +2,11 @@ require('dotenv').config()
 
 const { MongoClient } = require('mongodb');
 
+// Connect to mongodb
 const uri = process.env.MONG_URI;
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const client = new MongoClient(uri);
 
+// For getting data from mongodb
 async function getAllEntries() {
   try {
     await client.connect();

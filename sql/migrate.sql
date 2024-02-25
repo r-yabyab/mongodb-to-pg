@@ -1,0 +1,1 @@
+INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
