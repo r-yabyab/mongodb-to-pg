@@ -24,7 +24,7 @@ async function getAllEntries() {
           var stringed = entries[i]._id.toString()
           var stringedQuotes = "'" + stringed + "'"
           console.log(stringedQuotes)
-          console.log(entries[i].memo ?? null)
+          console.log(entries[i].memo || null)
           // console.log(stringed.match(regex))
         }, i * 10); // Multiply by 100 to wait for 0.1 seconds
       }
