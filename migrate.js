@@ -37,8 +37,8 @@ async function getAllEntries() {
             // var stringedQuotes_id = "'" + stringed_id + "'"
             const values =
               [
-                // stringed_id
-                entries[i]._id.replace(/^"(.*)"$/, '$1'),
+                // stringed_id,
+                entries[i]._id + "00000000",
                 entries[i].userID || null,
                 entries[i].number,
                 entries[i].timeSlept || null,
