@@ -32,7 +32,7 @@ async function getAllEntries() {
             //   entry.field1,
             //   entry.field2
 
-            const text = ('INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)')
+            const text = 'INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
             var stringed_id = entries[i]._id.toString()
             var stringedQuotes_id = "'" + stringed_id + "'"
             const values =
@@ -45,7 +45,7 @@ async function getAllEntries() {
                 entries[i].memo ?? null,
                 entries[i].createdAt,
                 entries[i].updatedAt,
-                entries[i]._v,
+                entries[i].__v,
               ]
             const res = await pgClient.query(text, values)
             console.log(res.rows[0])
@@ -53,7 +53,7 @@ async function getAllEntries() {
 
             // ])
           } catch (error) {
-            console.error('error')
+            console.error(error + "error")
           } finally {
             pgClient.release();
           }
