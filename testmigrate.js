@@ -11,25 +11,39 @@ const pgPool = new Pool({
 
 const entry = [{
     _id: '65d9522acab0924c27cab692',
+    // _id: new ObjectId('65c5c893cab0924c27cab5f2'),
     number: 7.5,
     createdAt: '2024-02-24T02:19:22.822Z',
     updatedAt: '2024-02-24T02:19:22.822Z',
     __v: 0
 }]
 
-async function testSubmit() {   
-          const pgClient = await pgPool.connect();
-          try {
-            const text = ('INSERT INTO submissions(_id, number, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5)')
-            const values = [entry[0]._id, entry[0].number, entry[0].createdAt, entry[0].updatedAt, entry[0]._v]
-            const res = await pgClient.query(text, values)
-            console.log(res.rows[0])
-          } catch (error) {
-            console.error('error')
-          } finally {
-            pgClient.release();
-          }
-      }
+async function testSubmit() {
+    const pgClient = await pgPool.connect();
+    try {
+        const text = ('INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)')
+        var stringed_id = entry[i]._id.toString()
+        var stringedQuotes_id = "'" + stringed_id + "'"
+        const values =
+            [
+                stringedQuotes_id,
+                entry[i].userID,
+                entry[i].number,
+                entry[i].timeSlept,
+                entry[i].activities,
+                entry[i].memo,
+                entry[i].createdAt,
+                entry[i].updatedAt,
+                entry[i]._v,
+            ]
+        const res = await pgClient.query(text, values)
+        console.log(res.rows[0])
+    } catch (error) {
+        console.error('error')
+    } finally {
+        pgClient.release();
+    }
+}
 
 testSubmit();
 

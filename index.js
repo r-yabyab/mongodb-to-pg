@@ -16,16 +16,17 @@ async function getAllEntries() {
 
     const entries = await collection.find({}).toArray();
 
-    // console.log(entries);
-
-    // entries.forEach((entry, index) => {
-    //     console.log(`Entry ${index + 1}:`, entry);
-    //   });
-
-    for (let i = 0; i < entries.length; i++) {
+    // for (let i = 0; i < entries.length; i++) {
+      for (let i = 0; i < entries.length; i++) {
         setTimeout(() => {
           console.log(`Entry ${i + 1}:`, entries[i]);
-        }, i * 20); // Multiply by 100 to wait for 0.1 seconds
+          // console.log('............')
+          var stringed = entries[i]._id.toString()
+          var stringedQuotes = "'" + stringed + "'"
+          console.log(stringedQuotes)
+          console.log(entries[i].memo ?? null)
+          // console.log(stringed.match(regex))
+        }, i * 10); // Multiply by 100 to wait for 0.1 seconds
       }
 
   } finally {

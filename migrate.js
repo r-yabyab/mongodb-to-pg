@@ -28,10 +28,30 @@ async function getAllEntries() {
           
           const pgClient = await pgPool.connect();
           try {
-            await pgClient.query('INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [
-              entry.field1,
-              entry.field2
-            ])
+            // await pgClient.query('INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [
+            //   entry.field1,
+            //   entry.field2
+
+            const text = ('INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)')
+            var stringed_id = entries[i]._id.toString()
+            var stringedQuotes_id = "'" + stringed_id + "'"
+            const values =
+              [
+                stringedQuotes_id,
+                entries[i].userID ?? null,
+                entries[i].number,
+                entries[i].timeSlept ?? null,
+                entries[i].activities ?? null,
+                entries[i].memo ?? null,
+                entries[i].createdAt,
+                entries[i].updatedAt,
+                entries[i]._v,
+              ]
+            const res = await pgClient.query(text, values)
+            console.log(res.rows[0])
+
+
+            // ])
           } catch (error) {
             console.error('error')
           } finally {
