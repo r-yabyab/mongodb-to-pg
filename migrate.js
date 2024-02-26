@@ -38,11 +38,11 @@ async function getAllEntries() {
             const values =
               [
                 stringedQuotes_id,
-                entries[i].userID ?? null,
+                entries[i].userID || null,
                 entries[i].number,
-                entries[i].timeSlept ?? null,
-                entries[i].activities ?? null,
-                entries[i].memo ?? null,
+                entries[i].timeSlept || null,
+                entries[i].activities || null,
+                entries[i].memo || null,
                 entries[i].createdAt,
                 entries[i].updatedAt,
                 entries[i].__v,
