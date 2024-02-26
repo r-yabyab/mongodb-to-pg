@@ -33,11 +33,12 @@ async function getAllEntries() {
             //   entry.field2
 
             const text = 'INSERT INTO submissions(_id, userid, number, timeslept, activities, memo, createdat, updatedat, __v) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)'
-            var stringed_id = entries[i]._id.toString()
-            var stringedQuotes_id = "'" + stringed_id + "'"
+            // var stringed_id = entries[i]._id.toString()
+            // var stringedQuotes_id = "'" + stringed_id + "'"
             const values =
               [
-                stringed_id,
+                // stringed_id
+                entries[i]._id.replace(/^"(.*)"$/, '$1'),
                 entries[i].userID || null,
                 entries[i].number,
                 entries[i].timeSlept || null,
