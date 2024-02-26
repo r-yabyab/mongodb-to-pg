@@ -59,7 +59,6 @@ async function getAllEntries() {
           }
 
       }
-      console.log('MIGRATION COMPLETED')
 
   } finally {
     await client.close();
